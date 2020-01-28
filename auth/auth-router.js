@@ -5,17 +5,16 @@ const Users = require("../users/users-model.js");
 
 router.get("/secret", (req, res, next) => {
   if (req.headers.authorization) {
-    bc.hash(req.headers.authorization, 10, (err, hash) => {
+    bc.hash(req.headers.authorization, 8, (err, hash) => {
       if (err) {
-        res.status(500).json({ error: "it broke" });
+        res.status(500).json({ oops: "it broke" });
       } else {
-        res, status(200).json({ hash });
+        res.status(200).json({ hash });
       }
     });
   } else {
     res.status(400).json({ error: "missing header" });
   }
-  next();
 });
 
 router.post("/register", (req, res) => {
@@ -40,7 +39,7 @@ router.post("/login", (req, res) => {
   Users.findBy({ username })
     .first()
     .then(user => {
-      if (user) {
+      if (user && bc.compareSync(password, user.password)) {
         res.status(200).json({ message: `Welcome ${user.username}!` });
       } else {
         res.status(401).json({ message: "Invalid Credentials" });
