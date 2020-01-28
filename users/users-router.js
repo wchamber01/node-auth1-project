@@ -1,10 +1,8 @@
-const bc = require("bcryptjs");
 const router = require("express").Router();
 
 const Users = require("./users-model.js");
-const Rest = require("../middleware/rest-mw.js");
 
-router.get("/", Rest, (req, res) => {
+router.get("/", (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);

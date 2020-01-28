@@ -11,6 +11,10 @@ router.get("/", (req, res) => {
   res.json({ api: "It's alive" });
 });
 
+router.get("/restricted", (req, res) => {
+  res.json({ restricted: "route reached" });
+});
+
 router.get("/middleware/", Rest, (req, res) => {
   res.json({ message: "Welcome to the restricted routes!" });
 });
@@ -50,6 +54,24 @@ router.post("/login", (req, res) => {
       console.log(error);
       res.status(500).json({ error: "There was a problem" });
     });
+});
+
+router.get("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.status(500).json({
+          you:
+            "You don't have to go home but you can't stay here! Please try logging out again."
+        });
+      } else {
+        res.status(200).json({ Elvis: "has left the building" });
+      }
+    });
+  } else {
+    console.log(err);
+    res.status(204).json({ error: "there was an error" });
+  }
 });
 
 module.exports = router;
