@@ -1,10 +1,10 @@
 const bc = require("bcryptjs");
 const router = require("express").Router();
 
-const restRouter = require("../restricted/rest-router.js");
+const restRouter = require("../restricted/rest-mw.js/index.js");
 const usersRouter = require("../users/users-router.js");
 const Users = require("../users/users-model.js");
-const Rest = require("../restricted/rest-router.js");
+const Rest = require("../restricted/rest-mw.js/index.js");
 
 router.use("/users", usersRouter);
 
