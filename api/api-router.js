@@ -4,14 +4,16 @@ const router = require("express").Router();
 const restRouter = require("../restricted/rest-router.js");
 const usersRouter = require("../users/users-router.js");
 const Users = require("../users/users-model.js");
-// const secretRouter = require("../secret/secret-router.js");
+const Rest = require("../restricted/rest-router.js");
 
-router.use("/restricted", restRouter);
 router.use("/users", usersRouter);
-// router.use("/secret", secretRouter);
 
 router.get("/", (req, res) => {
   res.json({ api: "It's alive" });
+});
+
+router.get("/restricted/", Rest, (req, res) => {
+  res.json({ message: "Welcome to the restricted routes!" });
 });
 
 router.post("/register", (req, res) => {
