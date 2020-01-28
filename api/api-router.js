@@ -1,10 +1,9 @@
 const bc = require("bcryptjs");
 const router = require("express").Router();
 
-const restRouter = require("../restricted/rest-mw.js/index.js");
 const usersRouter = require("../users/users-router.js");
 const Users = require("../users/users-model.js");
-const Rest = require("../restricted/rest-mw.js/index.js");
+const Rest = require("../middleware/rest-mw.js");
 
 router.use("/users", usersRouter);
 
@@ -12,7 +11,7 @@ router.get("/", (req, res) => {
   res.json({ api: "It's alive" });
 });
 
-router.get("/restricted/", Rest, (req, res) => {
+router.get("/middleware/", Rest, (req, res) => {
   res.json({ message: "Welcome to the restricted routes!" });
 });
 
