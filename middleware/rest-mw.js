@@ -1,6 +1,6 @@
 function restricted(req, res, next) {
   console.log(req.session, "line 2");
-  if (req.session && req.session.loggedIn) {
+  if (req.session && req.session.isLoggedIn) {
     next();
   } else {
     res.status(401).json({ message: "YOU SHALL NOT PASS!!!" });
