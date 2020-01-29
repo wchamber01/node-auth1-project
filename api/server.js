@@ -12,7 +12,7 @@ const server = express();
 configureMiddleware(server);
 
 server.use("/api", apiRouter);
-server.use("/users", rest, userRouter);
+server.use("/users", userRouter);
 server.use("/restricted", rest);
 
 module.exports = server;

@@ -1,5 +1,5 @@
 function restricted(req, res, next) {
-  console.log(req);
+  console.log(req.session, "line 2");
   if (req.session && req.session.loggedIn) {
     next();
   } else {
