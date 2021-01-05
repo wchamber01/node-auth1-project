@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/wchamber01/node-auth1-project#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
     "connect-session-knex": "^1.5.0",
